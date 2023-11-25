@@ -12,5 +12,6 @@ mylen([X|T],N) :- mylen(T,N1), N is N1+1.
 group(X,L) :- bagof([N,C,M],grade(X,N,C,M),L).
 avg_mark(X, Y) :- findall(M,grade(X,N,C,M),L1), sum(L1,0,S), mylen(L1,L), Y is S/L.
 
-notpassed(C,L) :- findall([X,N,M],grade(X,N,C,2),L).
-%findall([X,N,M], M=:=2, L).
+notpassed(C,L) :- findall([X,N],grade(X,N,C,2),L).
+
+count_notpassed(X, Num):-findall(2, grade(X,N,C,2), Marks), mylen(Marks, Num).
